@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
 try {
-    $sql = "SELECT DISTINCT category FROM news"; // Izvući jedinstvene kategorije
+    $sql = "SELECT DISTINCT category FROM news";
     $stmt = $conn->query($sql);
     $categories = $stmt->fetchAll(PDO::FETCH_COLUMN);
 

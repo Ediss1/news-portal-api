@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
         exit;
     }
 
-    $data = json_decode(file_get_contents("php://input"), true); // Parse JSON input
+    $data = json_decode(file_get_contents("php://input"), true);
     $newsId = $_GET['id'] ?? null;
     $title = $data['title'] ?? null;
     $content = $data['content'] ?? null;

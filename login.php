@@ -17,13 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($data['username'] ?? '');
     $password = trim($data['password'] ?? '');
 
-    // Validate username and password
     if (empty($username) || empty($password)) {
         echo json_encode(['success' => false, 'error' => 'Username and password are required.']);
         exit();
     }
 
-    // Check if the user exists
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$username]);
@@ -31,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role']; // Example: Admin/User roles
+        $_SESSION['role'] = $user['role'];
         echo json_encode(['success' => true, 'user' => $user]);
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid username or password.']);

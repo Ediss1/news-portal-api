@@ -1,7 +1,7 @@
 <?php
 require 'db_connection.php';
 
-header("Access-Control-Allow-Origin: http://localhost:4200"); // Replace with your frontend origin
+header("Access-Control-Allow-Origin: http://localhost:4200");
 header("Access-Control-Allow-Methods: GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
