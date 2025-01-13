@@ -11,15 +11,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['id'])) {
-    http_response_code(401); // Unauthorized
-    echo json_encode(['success' => false, 'error' => 'No logged-in user found.']);
-    exit();
-}
-
 try {
-    $userId = $_SESSION['id'];
+    $userId = $_SESSION['user']['id'];
 
     $sql = "SELECT id, name, surname, username, email FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);

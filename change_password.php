@@ -12,13 +12,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Make sure the user is logged in
-    if (!isset($_SESSION['id'])) {
-        echo json_encode(['success' => false, 'error' => 'You must be logged in to change your password.']);
-        exit();
-    }
-
-    // Process the change password request
     $data = json_decode(file_get_contents("php://input"), true);
 
     $currentPassword = $data['currentPassword'] ?? '';
@@ -36,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $userId = $_SESSION['id'];
+        $userId = $_SESSION['user']['id'];
 
         // Fetch the user’s current password
         $sql = "SELECT password FROM users WHERE id = ?";

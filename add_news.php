@@ -14,7 +14,7 @@ $title = $data['title'] ?? null;
 $content = $data['content'] ?? null;
 $category = $data['category'] ?? null;
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user']['username'])) {
     echo json_encode(['error' => 'You must be logged in to add news.']);
     exit;
 }
@@ -25,7 +25,7 @@ if (!$title || !$content || !$category) {
 }
 
 try {
-    $author = $_SESSION['username'];
+    $author = $_SESSION['user']['username'];
     $date = date('Y-m-d H:i:s');
     $sql = "INSERT INTO news (title, content, author, date, category) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
